@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Simulator</title>
+			<meta name="description" content="">
+			<meta name="viewport" content="width=device-width">
+			<link href="css/vuetify.css" rel="stylesheet">
+			<link href="css/main.css" rel="stylesheet">
+			<link href="css/all.css" rel="stylesheet">
+	</head>
+  <body>
+	<div id="root">
+		<v-app id="inspire">	
+			<div class="simulate-control" id="simulator-control">
+				<v-tabs class="controller--tabs" fixed centered>
+					<v-tabs-bar class="grey lighten-3">
+						<v-tabs-item
+						v-for="(btn, index) in controllers"
+						:key="index"
+						:href="'#' + btn.title"
+						@click="btn.fcn()"
+						class="controller-tab-container"
+						ripple>
+						{{btn.title}}
+						</v-tabs-item>
+						<v-tabs-slider color="green"></v-tabs-slider>
+					</v-tabs-bar>
+					<v-tabs-items>
+						<v-tabs-content class="main-controller"
+						id="Timed Actions">
+							<keep-alive>
+								<ul id="example-1">
+									<li v-for="item in timedActions">
+										<a>{{ item.MethodName }} @ {{ item.Interval }} -> {{ item.Callback }}</a>
+										<v-btn class="btn" dark outline small color="indigo" @click="onRemoveTimedAction(item.ActionID)">Remove</v-btn>
+									</li>
+								</ul>
+								</keep-alive>
+                        </v-tabs-content>
+						<v-tabs-content id="Other Tab"  class="main-controller">
+							
+						</v-tabs-content>
+					</v-tabs-items>
+				</v-tabs>				
+			</div>
+		</v-app>
+	</div>
+	<script src="js/vue.js"></script>
+	<script src="js/vuetify.js"></script>
+    <script src="js/signalr/dist/browser/signalr.js"></script>
+	<script src="js/reflected.js"></script>
+	<script src="js/reflectedManagement.js"></script>
+  </body>
+</html>

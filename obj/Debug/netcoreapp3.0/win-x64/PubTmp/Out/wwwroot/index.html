@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html>
+  	<head>
+		<meta charset="utf-8">
+			<title>Simulator</title>
+			<meta name="description" content="">
+			<meta name="viewport" content="width=device-width">
+			<link href="css/vuetify.css" rel="stylesheet">
+			<link href="css/main.css" rel="stylesheet">
+			<link href="css/all.css" rel="stylesheet">
+			<script>
+
+			function setAppSize(appName, width, height) {
+				var hostingPlaceHolder = document.getElementById(appName);
+				if(hostingPlaceHolder)
+				{
+					hostingPlaceHolder.style.height = height;
+					hostingPlaceHolder.style.width = width;
+				}
+				else {
+					console.log("hosting placeholder " + appName + " was not found");
+				}
+			}
+			</script>
+	</head>
+
+
+  <body>
+	<div id="root">
+		<v-app id="inspire" dark>	
+			<!-- this part is for the upper screen part -->
+			<div class="video-wrapper">
+				<div class="video-screen" id="Channel0" style="float:left"></div>
+				<div class="video-screen" id="Channel1" style="float:right"></div> 
+			</div>
+			<!-- this part is for the bottom screen part  nbv-->
+
+				<!-- base desgin>
+				
+				<v-navigation-drawer
+				clipped
+				fixed
+				v-model="drawer"
+				app
+		-->
+
+			<div class="simulate-control" id="simulator-control"> 
+				<div>
+					<div class="popup-controller">
+						<!--v-btn
+						fab
+						outline
+						color="indigo"
+						v-model="obj.popup.on"
+						@click="onPopupChange()"
+						class="popup-section"
+						large
+						>
+					</v-btn-->
+					<v-icon  :class="popupIconColor" class="centeredIcon" large>{{popupIcon}}</v-icon>
+					</div>
+					<div class="popup-label"><p>{{obj.popup.callsign}}</p>
+					</div>
+				</div>
+
+				<v-tabs class="controller--tabs" fixed centered>
+					<v-tabs-bar class="dark lighten-3">
+						<v-tabs-item
+						v-for="(btn, index) in controllers"
+						:key="index"
+						:href="'#' + btn.title"
+						@click="btn.fcn()"
+						class="controller-tab-container"
+						ripple>
+						{{btn.title}}
+						</v-tabs-item>
+						<v-tabs-slider color="blue"></v-tabs-slider>
+					</v-tabs-bar>
+					<v-tabs-items>
+						
+						<!-- SCENARIOS -->
+						<v-tabs-content id="Scenarios" class="main-controller">
+							<div class="scenario-selector grid-half-rows">
+								<v-btn class="grey--text text--darken-1" large fab outline @mousedown="onUpPushed()" @mouseup="onUpReleased()">
+									<v-icon large>arrow_drop_up</v-icon>
+								</v-btn>					
+								<v-btn class="grey--text text--darken-1" large fab outline @mousedown="onDownPushed()" @mouseup="onDownReleased()">
+									<v-icon large>arrow_drop_down</v-icon>
+								</v-btn>
+							</div>
+							<div class="scenario-control grid-half-rows">					
+								<v-btn class="elbit-btn" dark fab outline large color="grey" @mousedown="onStartPushed()" @mouseup="onStartReleased()">Start</v-btn>
+								<v-btn class="elbit-btn" dark fab outline large color="grey" @click="onPausePushed()">{{pauseResumeText}}</v-btn>
+							</div>
+						</v-tabs-content>
+						
+						<!-- Training -->
+						<v-tabs-content id="Training" class="main-controller">
+							<!-- Display Button -->
+							<v-btn class="elbit-btn" Dark fab outline large color="grey" @click="onDisplayPushed()">Display
+									 <br>{{displayOpenPriorityText}}</br>
+							</v-btn>
+
+							<!-- Mode Button -->
+							<!-- v-btn class="elbit-btn" dark fab outline large color="grey" @mousedown="btn.onMouseDown ? btn.onMouseDown() : {}" @mouseup="btn.onMouseUp ? btn.onMouseUp() : {}"-->
+							<v-btn class="elbit-btn" dark fab outline large color="grey"  @mousedown="onModeStatePushed()" @mouseup="onModeStateReleased()">
+							Mode	
+							<br>{{modeStateText}}</br> 
+							</v-btn>
+
+							<!-- AUTO PAGE Button -->
+							<v-btn class="elbit-btn" dark fab outline large color="grey"  @click="onAutoPagePushed()">
+								AUTO PAGE	
+								<br>{{autoPageText}}</br> 
+								</v-btn>
+							<!--
+							<v-btn v-for="(btn, index) in sim.btns" :key="btn.title" @click.prevent="btn.onTrigger ? btn.onTrigger() : {}" @mousedown="btn.onMouseDown ? btn.onMouseDown() : {}" @mouseup="btn.onMouseUp ? btn.onMouseUp() : {}" color="grey" dark fab outline large>
+								{{btn.title}}
+							</v-btn>
+						     	-->		
+
+                                <v-btn class="elbit-btn" dark fab outline large color="grey" @mousedown="onReloadPushed()" @mouseup="onReloadReleased()">
+                                    Reload
+                                </v-btn>
+                            </v-tabs-content>
+                        </v-tabs-items>
+                    </v-tabs>
+                </div>
+            </v-app>
+        </div>
+        <script src="js/vue.js"></script>
+        <script src="js/vuetify.js"></script>
+        <script src="js/signalr/dist/browser/signalr.js"></script>
+        <script src="js/reflected.js"></script>
+        <script src="js/onesimlink.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>

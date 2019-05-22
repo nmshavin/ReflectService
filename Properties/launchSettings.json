@@ -1,0 +1,27 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/ReflectService",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "http://127.0.0.1:5500/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "Executable",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "nativeDebugging": true
+    },
+    "Snapshot Debugger": {
+      "commandName": "Executable"
+    }
+  }
+}
